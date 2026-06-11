@@ -1,5 +1,5 @@
 // 负责 提供llm client 对象
-import { OpenAI } from "openai/client.js";
+import OpenAI from "openai";
 import dotenv from "dotenv";
 
 
