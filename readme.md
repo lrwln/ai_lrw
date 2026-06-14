@@ -37,3 +37,19 @@ AI Enginnering(Harness 工程)
 ### agent 智能体 
 - coze 0 代码
 - langchain 
+
+## 学习内容 
+### 前端
+- html 语义化标签,BEM命名规范
+- es6 语法特性 array API 正则表达式
+- javascript执行机制和原型链
+### 后端
+- python list & dict
+- nodejs process & esm
+- restful api 设计 网络协议
+### AI
+- prompt
+- nlp任务
+- AIGC接口
+    ![ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/courses/chatgpt-prompt-eng)
+- 
