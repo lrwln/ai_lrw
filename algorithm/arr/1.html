@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        // const arr = [1,2,3,4]
+        //如果不知道数组的元素呢？
+        // const arr = [];//特定的存储结构 一段连续的内存空间
+        // //特定的行为 adt abstract data type
+        // arr.push();//结尾添加元素 返回新数组的长度 会修改原数组不返回新数组
+        // arr.unshift();//结尾删除元素 返回
+        // arr.pop();
+        // arr.shift();
+        // const arr = new Array();
+        // console.log(typeof Array,
+        // Array.prototype,
+        // Array.prototype.__proto__ 
+        // )
+        // const arr = (new Array(7)).fill(1);//指定数组的大小 empty
+        // console.log(arr);
+        const arr = (new Array(7)).fill([])//fill 是在内存中申请了一个地址并且将此地址填充到七个元素中 .fill([]) 将同一个数组对象（即 [] 计算出的那一个数组）填充到数组的每一个索引位置上。
+        arr[0][0] = 1
+        const len = arr.length//对象访问性能开销大 最好额外开辟一个空间
+        for (let i = 0; len; i++) {
+            const innerlen = arr[i].length
+            for (let j = 0; innerlen; j++) {
+                console.log(arr[i][j], i, j)
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
