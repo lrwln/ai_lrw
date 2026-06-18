@@ -30,14 +30,11 @@ const tree = {
 
 
 const preorder = (root) => {
-
     if (!root)
         return;
     console.log(root.val);
     preorder(root.left)
-    preorder(root.right)
-
-
+    preorder(root.right)//也就是深度优先遍历的二叉树版本    
 };
 preorder(tree);
 

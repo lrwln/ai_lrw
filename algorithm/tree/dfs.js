@@ -15,7 +15,7 @@ const tree = {
                     ]
                 }
             ]
-        }
+        },
         {
             val: 'e',
             Children: [
@@ -30,12 +30,10 @@ const tree = {
             ]
         }
     ],
-
-
 }
 const dfs = (root) => {//传入的是tree的根节点
     console.log(root.val)
-    root.Children.forEach(dfs)
+    root.Children.forEach(dfs)//当为二叉树时仅需遍历左右树即可
 }
 
 
