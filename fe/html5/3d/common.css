@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+html,
+body {
+    height: 50vh;
+    /* background-color: #000; */
+    display: flex;
+    /*弹性布局*/
+
+}
+
+.box-wrap {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}

@@ -29,6 +29,7 @@ http.createServer((req, res) => {//req 请求对象  res 响应对象
     }
     if (req.url === '/todos') {
         // 传输的是二进制文本  需要把对象转换成字符串
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Content-Type', 'application/json; charset=utf-8');
         res.end(JSON.stringify(todos));
     }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" height="800" style="background-color: #c1c1c1;margin: 20px;">
+
+    </canvas>
+
+    <script>
+        const c = document.getElementById("canvas");
+        const ctx = c.getContext("2d");//拿到画笔
+        //绘制线段
+        ctx.moveTo(0, 10)
+        ctx.lineTo(200, 10)
+
+        ctx.lineWidth = 10
+        ctx.strokeStyle = 'red'
+        ctx.stroke()
+
+    </script>
+</body>
+
+</html>

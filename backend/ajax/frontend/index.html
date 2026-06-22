@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="todos"></ul>
+    <button id="btn">button</button>
+
+    <script>
+        document.getElementById('btn')
+            .addEventListener('click', () => {
+                console.log('To press the button')
+            })
+        // fetch('http://localhost:3000/todos')
+        // .then(res=>res.json())
+        // .then(data=>{
+        //     console.log(data);
+        // })
+        //fetch之前还有一种方法
+        //底层本质就是js可以主动区发起http请求 当前页面仍在
+        //fetch/xhr请求接口 动态的更新页面 
+        const xhr = new XMLHttpRequest();//实例化一个xhr对象
+
+        //'open'-- open a http access way
+        //异步函数true 同步函数false 
+        xhr.open('GET', 'http://localhost:3000/todos', false)
+        //send a user require
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4)
+            // console.log(xhr.responseText);
+            {
+                const todos = JSON.parse(xhr.responseText);
+                document.getElementById('todos').innerHTML =
+                    todos.map(todo => `<li>${todo.title}</li>`)
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>
