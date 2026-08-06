@@ -19,3 +19,38 @@ react 开发全家桶
   性能优化
 - 动态路由
 - 404 Not Found
+- 鉴权路由
+  - http 无状态的 
+  - 有状态？ 
+    - 请求头 token Authorization 
+    - Cookie小饼干
+    - localStorage 存储 login 状态
+    user  admin 
+    password 123456
+- 组件内部的子组件
+  props.children 拿到组件申明的内部所有
+  的子节点。
+  model 弹窗组件   mask 蒙层
+  窗体 头部， 尾部 主题部分children传入。
+  定制性
+  <Model>
+    {children 定制}
+  <Model>
+
+## 路由对象
+  - SPA 需要前端路由，
+  - url 改变， 对应不同的资源 resetful 设计理念
+  hash #/pay   browserRouter history
+  - navigator 导航栏
+  - location 地址栏
+  - history 历史记录 
+  - Link 组件
+    to 
+    replace 
+## 路由两种选型
+- hashRouter
+  url 局部改变 hash 部分
+  url 有点为了前端路由， url 有点丑， 后端路由不太一样
+  /pay    #/pay
+- BrowserRouter 不用hash方案实现SPA
+  

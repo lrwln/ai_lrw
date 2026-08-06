@@ -4,7 +4,9 @@ import {
 } from 'react';
 import {
   // location.hash
-  HashRouter as Router, // 前端路由 #/ hashchange
+  // 前端路由有两种， HashRouter 老的， html5 history 
+  BrowserRouter as Router,
+   // 前端路由 #/ hashchange
   Routes, // 路由配置数组 都是组件
   Route, // 路由配置项
   Navigate
@@ -23,7 +25,9 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/Products/Detail'));
 const NewProduct = lazy(() => import('./pages/Products/New'));
-
+const Login = lazy(() => import('./pages/Login'));
+const ProtectRoute = lazy(() => import('./ProtectRoute'));
+const Pay = lazy(() => import('./pages/Pay'));
 
 const App = () => {
   return (
@@ -47,8 +51,21 @@ const App = () => {
                 <Route path=":productId" element={<ProductDetail/>}/>
                 <Route path="new" element={<NewProduct/>}/>
               </Route>
+              {/* 有个活动/game 100wan   /result 活动结束了
+              /home 首页， 重定向到 / 
+              /user/:id  登录？ 送到 /login   登录后送回 */}
               <Route path="/old-path" element={
                 <Navigate replace to="/new-path"/>
+              }/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="/pay" element={
+                // 门禁保安
+                // Pay 要进的房间
+                // children 用来定制化组件
+                <ProtectRoute>
+                  {/* children */}
+                  <Pay />
+                </ProtectRoute>
               }/>
               {/* * 贪婪匹配所有， 最后404 兜底 */}
               <Route path="*" element={<NotFound />}/>
