@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "D:/code/2026/ai_lrw/ai_lrw/ai/mcp/mcp-test2"
+            ]
+        }
+    }
+}

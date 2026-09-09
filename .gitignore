@@ -4,3 +4,7 @@ dist
 "*.env" 
 "*.env" 
 "*.env" 
+".env" 
+".env.*" 
+"*.pem" 
+"*.key" 
