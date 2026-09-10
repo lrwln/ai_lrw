@@ -14,7 +14,7 @@ llm 有些问题
   Tool Use 模块 
 - 访问内部私有文档， llm 不知道 
   RAG 模块  
-- 最新的世界杯新闻， 新的不再预训练数据中 
+- 最新的世界杯新闻， 新的不再预训练数据中 (实时新闻 消息)
   MCP(第三方Tool， llm 协议) Tool
 - 做ppt, 分析股市并自动买卖
   skills 技能 蒸馏 
@@ -51,7 +51,7 @@ Agent 其实也不复杂， llm本身也可以思考，规划，给它用Tool �
 - Tool 
   langchain 又来接管 @langchain/core zod 验证工具
   tool opanai 接口 里有描述和格式的约束
-  - 2个部分 （异步）处理函数  
+  - 2个部分 （异步）处理函数
     函数描述对象
     description 详细功能，覆盖场景， 参数需求
     schema  参数约束 tool 与 llm 要调用此工具， 必须提供schema 约定的参数
