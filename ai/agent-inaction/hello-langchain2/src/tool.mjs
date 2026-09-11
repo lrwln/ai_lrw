@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { ChatOpenAI } from '@langchain/openai';
 // import { Tool } from '@langchain/core/tools';
-import { tool } from '@langchain/core/tools';
+import { Tool, tool } from '@langchain/core/tools';
 import {
     HumanMessage,
     SystemMessage,
@@ -58,13 +58,41 @@ const messages = [
         -read_file:读取文件内容(使用此工具来获取文件内容)
 
         `),
-    new HumanMessage('请读取文件 tool.mjs 的内容,并解释代码'),
+    new HumanMessage('请读取文件 src/tool.mjs 的内容,并解释代码'),
 ];
 
 let response = await modelWithTools.invoke(messages);
 console.log(JSON.stringify(response));
+messages.push(response);//将agent 回复添加到消息数组中
+//多个工具 await read await write 并发？
+// response.tools 性能 有多个数组 promise.all tool promises数组
+// tool 执行结果 每个结果 带上tool id ToolMessage 给messages数组添加
+// 把messages数组 传递给模型 递归调用 得到最后的结果
 
 
+//？？？
+while (response.tool_calls && response.tool_calls.length > 0) {
+    //调用工具
+    console.log(`\n[检查到 ${response.tool_calls.length}] 个工具调用`)
+    const toolResults = await Promise.all(
+        response.tool_calls.map(async (toolCall) => {
 
+            const tool = tools.find((t) => t.name === toolCall.name);
+            if (!tool) {
+                return `工具不存在${toolCall.name}，无法调用`
+            }
+            console.log(`[工具调用] ${toolCall.name}(${JSON.stringify(toolCall.args)})`)
+            //langchain的工具调用方法
+            try {
+                const result = await tool.invoke(toolCall.args);
+                return result;
+            } catch (err) {
+                return `工具调用失败${toolCall.name}(${JSON.stringify(toolCall.args)})：${err.message}`
+            }
+            const result = await tool.invoke(toolCall.args);
+            return result;
+        })
+    )
+}
 
 
