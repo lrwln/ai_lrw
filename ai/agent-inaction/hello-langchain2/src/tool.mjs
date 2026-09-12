@@ -76,7 +76,7 @@ while (response.tool_calls && response.tool_calls.length > 0) {
     console.log(`\n[检查到 ${response.tool_calls.length}] 个工具调用`)
     const toolResults = await Promise.all(
         response.tool_calls.map(async (toolCall) => {
-
+            //awync 不是 promise 其返回值才是 promise
             const tool = tools.find((t) => t.name === toolCall.name);
             if (!tool) {
                 return `工具不存在${toolCall.name}，无法调用`
@@ -89,10 +89,23 @@ while (response.tool_calls && response.tool_calls.length > 0) {
             } catch (err) {
                 return `工具调用失败${toolCall.name}(${JSON.stringify(toolCall.args)})：${err.message}`
             }
-            const result = await tool.invoke(toolCall.args);
-            return result;
+            // const result = await tool.invoke(toolCall.args);
+            // return result;
         })
     )
+    response.tool_calls.forEach((toolCall, index) => {
+        messages.push(
+            new ToolMessage({
+                content: toolResults[index],
+                tool_call_id: toolCall.id,
+            }
+            )
+        )
+    });
+
+    response = await modelWithTools.invoke(messages);
+    console.log(response);
+    messages.push(response);
 }
 
 
