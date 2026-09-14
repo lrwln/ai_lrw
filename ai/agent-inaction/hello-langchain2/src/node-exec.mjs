@@ -8,7 +8,7 @@ import {
 } from 'node:child_process'
 // mini cursor I/O 命令行
 //agent tool 自动化
-const command = 'ls -al'; // commmand linux 命令 列出所有文件 shell 脚本
+const command = 'npm vite react-todo-app --template react-ts'; // commmand linux 命令 列出所有文件 shell 脚本
 const [cmd, ...args] = command.split(' ');//命令和参数 分离出来
 const cwd = process.cwd();//当前工作目录
 // 开启子进程 执行命令行任务
