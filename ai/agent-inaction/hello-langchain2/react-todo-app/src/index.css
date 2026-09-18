@@ -1,0 +1,51 @@
+:root {
+  --ink: #2f2b26;
+  --ink-soft: #6f675b;
+  --paper: #faf6ec;
+  --jade: #5f7f6b;
+  --jade-dark: #476652;
+  --jade-light: #dde6da;
+  --cinnabar: #b0543a;
+  --gold: #b3945e;
+  --line: rgba(111, 96, 72, 0.16);
+
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'KaiTi', 'SimSun', serif;
+  color: var(--ink);
+  line-height: 1.6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: #ece5d4;
+  background-image:
+    radial-gradient(circle at 12% 16%, rgba(255, 252, 242, 0.8), transparent 42%),
+    radial-gradient(circle at 88% 78%, rgba(95, 127, 107, 0.3), transparent 48%),
+    radial-gradient(circle at 80% 12%, rgba(176, 84, 58, 0.1), transparent 40%),
+    linear-gradient(158deg, #f7f1e2 0%, #ece4d2 30%, #d9d6c4 58%, #b9c4af 84%, #a2b29d 100%);
+  background-attachment: fixed;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(95, 127, 107, 0.25);
+}
