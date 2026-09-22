@@ -1,0 +1,22 @@
+{
+  "name": "remotemcpdemo1",
+  "version": "1.0.0",
+  "description": "MCP本质上还是tool， 只不过还包了一层进程， 可以通过stdio和http来访问。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@langchain/core": "^1.2.12",
+    "@langchain/mcp-adapters": "^1.1.4",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ajv": "latest",
+    "chalk": "^6.0.0",
+    "dotenv": "^18.0.1",
+    "zod": "^4.6.5"
+  }
+}

@@ -28,10 +28,22 @@ const mcpClient = new MultiServerMCPClient(
     })
 // 获取工具
 const tools = await mcpClient.getTools();
+const res = await mcpClient.listResources();
+let resourceContent = ''
+for (const [serverName, resources] of Object.entries(res)) {
+    for (const resource of resources) {
+        const content = await mcpClient.readResource(
+            serverName,
+            resource.uri
+        )
+        resourceContent += content[0].text;
+    }
+}
 const modelWithTools = model.bindTools(tools);
 
 async function runAgentWithTools(query, maxIterations = 30) {
     const messages = [
+        new SystemMessage(resourceContent),//将资源内容作为系统消息 传递给模型
         new HumanMessage(query)
     ];
     for (let i = 0; i < maxIterations; i++) {
@@ -60,8 +72,8 @@ async function runAgentWithTools(query, maxIterations = 30) {
     //循环次数===30 依旧无法解决问题 返回最后一轮结果
     return messages[messages.length - 1].content;
 }
-await runAgentWithTools(`查询一下用户002的信息`);
-
+await runAgentWithTools(`Mcp server的使用指南介绍`);
+await mcpClient.close();//关闭mcp客户端 将子进程和my-mcp-server链接关闭
 
 
 
