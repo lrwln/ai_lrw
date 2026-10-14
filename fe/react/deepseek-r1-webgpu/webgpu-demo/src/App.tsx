@@ -3,7 +3,7 @@
 // 响应式
 // 数据绑定
 // 函数封装特性  组件的html,css, js 封成一个组件
-import { 
+import {
   useState, //react 函数式思想 hooks, 以use 开头 
   useEffect  // 生命周期钩子函数  组件挂载时执行
 } from 'react';
@@ -29,18 +29,18 @@ function App() {
   // const [progressItems, setProgressItems] = useState([{
   //   text: 'model.onnx',
   //   total: 34353543453
-  // },{
+  // }, {
   //   text: 'model2.onnx',
   //   percentage: 10,
   //   total: 14353543453
-  // } ]);
+  // }]);
   // 浏览器 导航栏 是否支持 WebGPU
   // 现代浏览器的重要特性
   // ! 取反 navigator.gpu 不支持的时候 undefined 
   // !! 再取反，一定可以转成 true | false
   // 双重否定等于肯定
   const IS_WEBGPU_AVALABLE = !!navigator.gpu;
-  
+
   // llm 处理
   const onEnter = () => {
     console.log(input)
@@ -50,9 +50,9 @@ function App() {
   // 组件挂载后， 附带做什么
   useEffect(() => {
     console.log('组价已经挂载完成');
-    
+
     // setTimeout(() => {
-      // setStatus('ready');
+    // setStatus('ready');
     // }, 2000)
   }, [])
 
@@ -65,7 +65,7 @@ function App() {
   return (
     // flex-direction 主轴 100vh margin x 水平居中对齐
     // 原子类， 组合一下 flex-start  flex-end
-    IS_WEBGPU_AVALABLE?(<div className="flex flex-col h-screen mx-auto items-center justify-end text-gray-800 bg-white">
+    IS_WEBGPU_AVALABLE ? (<div className="flex flex-col h-screen mx-auto items-center justify-end text-gray-800 bg-white">
       <div className="h-full overflow-auto flex justify-center 
       items-center flex-col relative">
         {/* 1rem = 4  1 单位  4px 
@@ -75,14 +75,14 @@ function App() {
           {/* 蒸馏的是Qwen */}
           <h1 className="text-4xl font-bold mb-1">DeepSeek-R1 WebGPU</h1>
           <h2 className="font-semibold">
-            A next generation reasoning model that runs locally in 
+            A next generation reasoning model that runs locally in
             your browser with WebGPU acceleration.
           </h2>
         </div>
         <div className="flex flex-col items-center px-4">
           <p className="mx-w-[510px] mb-4">
             <br />
-            Your are about to load 
+            Your are about to load
             <a
               href="https://huggingface.co/onnx-community/DeepSeek-R1-Distill-Qwen-1.5B-ONNX"
               target="_blank"
@@ -96,7 +96,7 @@ function App() {
               DeepSeek-R1-Distill-Qwen-1.5B
             </a>
             , a 1.5B parameter reasoning LLM optimized for in-browser
-              inference. Everything runs entirely in your browser with
+            inference. Everything runs entirely in your browser with
             {
               // transformers 是 huggingFace 推出的js 库， 用于加载和推理模型。
             }
@@ -129,41 +129,39 @@ function App() {
           react 添加事件 onClick 不要去另外发明 大佬骄傲
           HuggingFace 社区下载 开源模型 model-id */}
           <button
-          className="border px-4 py-2 rounded-lg bg-blue-400
+            className="border px-4 py-2 rounded-lg bg-blue-400
           text-white hover:bg-blue-500 disabled:cursor-not-allowed
-          select-none" 
-          disabled={status !== null || error !== null}
-          onClick={() => {
-            setStatus("loading");
-          }}>Load Model</button>
+          select-none"
+            disabled={status !== null || error !== null}
+            onClick={() => {
+              setStatus("loading");
+            }}>Load Model</button>
         </div>
       </div>
-      { 
+      {
         // loading 状态 llm 下载  文件数组 驱动下载进度条
         status === "loading" && (
           // tailwindcss 适配方便的 
-        <div className="w-full max-w-[500px] text-left 
+          <div className="w-full max-w-[500px] text-left 
         mx-auto p-4 bottom-0 mt-auto">
-          <p className="text-center mb-1">{loadingMessage}</p>
-          
-          
-          {
-            // 循环输出， react 用了原生js 
-            progressItems.map(({ text, percentage, total}, i) => (
-              // 组件函数可以以自定义标签的方式，类html插入 
-              // 开关标签的 xml
-              // 自闭和标签
-              // App 的子组件
-              <Progress 
-                key={i}
-                text={text} 
-                percentage={percentage}
-                total={total}
-              />
-            ))
-          }
-        </div>
-      )}
+            <p className="text-center mb-1">{loadingMessage}</p>
+            {
+              // 循环输出， react 用了原生js 
+              progressItems.map(({ text, percentage, total }, i) => (
+                // 组件函数可以以自定义标签的方式，类html插入 
+                // 开关标签的 xml
+                // 自闭和标签
+                // App 的子组件
+                <Progress
+                  key={i}
+                  text={text}
+                  percentage={percentage}
+                  total={total}
+                />
+              ))
+            }
+          </div>
+        )}
       {/* 聊天输入框 */}
       <div className="mt-2 border border-gray-300 rounded-lg
       w-[600px] max-w-[80%] max-h-[200px] mx-auto relative mb-3
@@ -172,37 +170,37 @@ function App() {
         px-3 py-4 rounded-lg bg-transparent border-none
         outline-hidden disabled:text-gray-400 
         disabled:placeholder-gray-200"
-        placeholder="Type your message..."
-        rows={1}
-        disabled={status !== 'ready'}
-        // react 不支持双向绑定， 性能不太好
-        value={input}
-        onInput={(e) => {
-          // e.target  事件对象上target 属性一定有 
-          // 不一定有value 属性 
-          // e 通用的事件对象
-          // e.target 通用的事件目标对象 不一定有value 
-          // e.target.value
-          // ts
-          // 断言 敢于断定 as ts 的关键字
-          const target = e.target as HTMLTextAreaElement;
-          setInput(target.value);
-        }}
-        onKeyDown={(e) => {
-          if (input.length > 0 && e.key === 'Enter' && 
-            !e.shiftKey) {
-            e.preventDefault();
-            onEnter();
+          placeholder="Type your message..."
+          rows={1}
+          disabled={status !== 'ready'}
+          // react 不支持双向绑定， 性能不太好
+          value={input}
+          onInput={(e) => {
+            // e.target  事件对象上target 属性一定有 
+            // 不一定有value 属性 
+            // e 通用的事件对象
+            // e.target 通用的事件目标对象 不一定有value 
+            // e.target.value
+            // ts
+            // 断言 敢于断定 as ts 的关键字
+            const target = e.target as HTMLTextAreaElement;
+            setInput(target.value);
+          }}
+          onKeyDown={(e) => {
+            if (input.length > 0 && e.key === 'Enter' &&
+              !e.shiftKey) {
+              e.preventDefault();
+              onEnter();
+            }
+          }}
+          title={
+            status === 'ready'
+              ? 'Model is ready'
+              : "Model not loaded yet"
           }
-        }}
-        title={
-          status==='ready'
-          ?'Model is ready'
-          :"Model not loaded yet"
-        }
         ></textarea>
       </div>
-    </div>):(
+    </div>) : (
       <div>您的浏览器还不支持WebGPU</div>
     )
   )
