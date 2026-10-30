@@ -16,4 +16,7 @@ generate 生成
 - question embedding 向量和语义 
 - 内容都embedding
 - 向量相似度计算
-
+  ## JUEJIN 的搜索
+- 提前将内容embedding
+需要向量数据库 milvus postgresql(mysql一样的关系数据库 但是支持向量储存)
+ 
